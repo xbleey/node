@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>主页</title>
+
+</head>
+<body>
+<div id="app">
+    <div>{{title}}</div>
+    <input type="text" v-model="n1" style="width: 100px;">
+    <select v-model="opt">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+    </select>
+    <input type="text" v-model="n2" style="width: 100px;">
+    <input type="button" value="=" @click="cal">
+    <input type="text" v-model="n3" style="width: 100px;">
+</div>
+</body>
+<script src="vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            title: '計算器',
+            n1: null,
+            n2: null,
+            n3: null,
+            opt: '+'
+        },
+        methods: {
+            cal() {
+                switch (this.opt) {
+                    case '+':
+                        this.n3 = parseInt(this.n1) + parseInt(this.n2)
+                        break;
+                    case '-':
+                        this.n3 = parseInt(this.n1) - parseInt(this.n2)
+                        break;
+                    case '*':
+                        this.n3 = this.n2 * this.n1;
+                        break;
+                    case '/':
+                        if (this.n2 == 0) {
+                            console.log('除数不能为零')
+                        } else {
+                            this.n3 = (this.n1 / this.n2).toFixed(2);
+                        }
+                        break;
+                    default:
+                        console.log('nothing');
+                        break;
+                }
+            }
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<style>
+    .red {
+        color: red;
+    }
+
+    .pink {
+        color: purple;
+    }
+
+    .thin {
+        font-weight: 200;
+    }
+
+    .italic {
+        font-style: italic;
+    }
+</style>
+<body>
+<div id="app">
+    <h2 class="red thin">你好，我的朋友</h2>
+    <h2 :class="[{'pink':(flag|flags)}, 'thin']">你好，我的朋友</h2>
+    <h2 :style="[style,style1]">你的朋友</h2>
+</div>
+</body>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            flag: false,
+            flags: true,
+            style: {color: 'red', 'font-weight': '200'},
+            style1: {'font-style': 'italic', 'font-weight': '200'}
+        },
+        methods: {}
+    });
+</script>
+</html>

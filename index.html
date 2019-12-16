@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>主页</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+
+        .back {
+            height: 50px;
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div>{{msg}}</div>
+    <div class="back" @click.self="div">
+        <button @click.prevent="btn">button</button>
+    </div>
+    <button @click="lang">lang</button>
+    <button @click="stopMove">stop</button>
+</div>
+</body>
+<script src="vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            msg: 'apple',
+            interval: null
+        },
+        methods: {
+            div() {
+                console.log('div is here')
+            },
+            btn() {
+                console.log('btn is here')
+            },
+            lang() {
+                if (this.interval != null) return;
+                this.interval = setInterval(() => {
+                    var message = this.msg
+
+                    var start = message.substring(0, 1)
+                    var end = message.substring(1)
+
+                    this.msg = end + start
+                }, 400)
+
+            },
+            stopMove() {
+                clearInterval(this.interval)
+                this.interval = null
+            }
+        }
+    })
+</script>
+</html>
