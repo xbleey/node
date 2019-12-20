@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>主页</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+
+        .back {
+            height: 50px;
+            background-color: pink;
+        }
+
+    </style>
+    <script src="/node/vue.js"></script>
+    <link rel="stylesheet" href="/node/animate.min.css" type="text/css">
+    <link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+<div id="app">
+    <button @click="interval=!interval">显示</button>
+    <transition enter-active-class="hinge" leave-active-class="shake">
+        <div v-if="interval" class="animated">{{msg}}</div>
+    </transition>
+    <i class="fa fa-address-book fa-2x" aria-hidden="true"></i>
+</div>
+
+</body>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            msg: 'apple',
+            interval: true
+        },
+        methods: {}
+    })
+</script>
+</html>
