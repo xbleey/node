@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>主页</title>
+    <script src="/node/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <my-com1></my-com1>
+    <my-com2></my-com2>
+    <my-com3></my-com3>
+</div>
+
+<template id="tmp1">
+    <div>
+        <h3>这会非常棒！</h3>
+    </div>
+</template>
+</body>
+<script>
+    var com1 = Vue.extend({
+        template: '<div><h3>这是我用extend创建的</h3></div>'
+    })
+
+    Vue.component('myCom1', com1)
+    Vue.component('myCom3', {
+        template: '#tmp1'
+    })
+
+    var vm = new Vue({
+        el: '#app',
+        data: {},
+        methods: {},
+        components: {
+            'myCom2': com1,
+
+        }
+    })
+</script>
+</html>
