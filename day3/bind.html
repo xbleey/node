@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>主页</title>
+    <style>
+        .ball {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: red;
+        }
+
+    </style>
+    <script src="/node/vue.js"></script>
+    <link rel="stylesheet" href="/node/animate.min.css" type="text/css">
+</head>
+<body>
+<div id="app">
+    <button @click="interval=!interval">显示</button>
+    <transition @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter">
+        <div class="ball" v-show="interval"></div>
+    </transition>
+</div>
+
+</body>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            interval: false
+        },
+        methods: {
+            beforeEnter(el) {
+                el.style.transform = "translate(0,0)"
+            },
+            enter(el, done) {
+                el.offsetWidth
+                el.style.transform = "translate(500px,500px)"
+                el.style.transition = 'all 1s ease'
+
+                done()
+            },
+            afterEnter(el) {
+                console.log('ok')
+                this.interval = !this.interval
+            }
+        }
+    })
+</script>
+</html>
